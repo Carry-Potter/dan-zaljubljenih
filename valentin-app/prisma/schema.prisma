@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Card {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  name      String
+  message   String
+  signature String
+  highlight String
+  imageUrl  String?
+  heartColor String?
+  viewCount Int     @default(0)
+  createdAt DateTime @default(now())
+  expiresAt DateTime?
+}
